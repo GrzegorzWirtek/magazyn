@@ -2,31 +2,32 @@
 
 import { useState } from 'react';
 import Details from './Details';
+import { useAppContext } from '@/app/context/AppContext';
 
 type Props = {
-	id: string;
+	id: number;
 };
 
-export default function Area({ id }: Props) {
-	const [areaClass, setAreaClass] = useState('');
+export default function Area({ id: itemId }: Props) {
+	const { id, setId } = useAppContext();
 
 	const hideDetails = () => {
-		setAreaClass('');
+		setId(null);
 	};
 
 	const handleClick = () => {
-		if (areaClass === '') {
-			setAreaClass('bg-blue-400');
+		if (!id) {
+			setId(itemId);
 		} else {
-			setAreaClass('');
+			setId(null);
 		}
 	};
 
 	return (
 		<>
-			{areaClass === '' ? null : <Details id={id} hide={hideDetails} />}
+			{id === itemId && <Details id={id} hide={hideDetails} />}
 			<div
-				className={`border box-border ${areaClass}`}
+				className={`border box-border ${id === itemId && 'bg-blue-400'}`}
 				onClick={handleClick}></div>
 		</>
 	);
