@@ -3,13 +3,13 @@ import { createContext, useContext, useState } from 'react';
 import { Dispatch, SetStateAction } from 'react';
 
 interface ContextProps {
-	id: number | null;
-	setId: Dispatch<SetStateAction<number | null>>;
+	checked: number[];
+	setChecked: Dispatch<SetStateAction<number[]>>;
 }
 
 const initialState = {
-	id: null,
-	setId: () => {},
+	checked: [],
+	setChecked: () => {},
 };
 
 const AppContext = createContext<ContextProps>(initialState);
@@ -17,13 +17,13 @@ const AppContext = createContext<ContextProps>(initialState);
 export const AppContextProvider = ({
 	children,
 }: React.PropsWithChildren<{}>) => {
-	const [id, setId] = useState<number | null>(null);
+	const [checked, setChecked] = useState<number[]>([]);
 
 	return (
 		<AppContext.Provider
 			value={{
-				id,
-				setId,
+				checked,
+				setChecked,
 			}}>
 			{children}
 		</AppContext.Provider>

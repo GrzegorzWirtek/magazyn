@@ -1,34 +1,40 @@
 'use client';
 
-import { useState } from 'react';
 import Details from './Details';
 import { useAppContext } from '@/app/context/AppContext';
+import { Area } from '@/utils/types';
 
 type Props = {
-	id: number;
+	details: Area;
 };
 
-export default function Area({ id: itemId }: Props) {
-	const { id, setId } = useAppContext();
+export default function Area({ details }: Props) {
+	const { prodArr } = details;
+	const { checked, setChecked } = useAppContext();
 
-	const hideDetails = () => {
-		setId(null);
+	const hidePopup = () => {
+		setChecked([]);
 	};
 
-	const handleClick = () => {
-		if (!id) {
-			setId(itemId);
-		} else {
-			setId(null);
-		}
+	const setAsChecked = () => {
+		if (checked.length > 0) return setChecked([]);
+		setChecked([details.id]);
 	};
 
 	return (
 		<>
-			{id === itemId && <Details id={id} hide={hideDetails} />}
+			{checked.includes(details.id) && (
+				<Details details={details} hidePopup={hidePopup} />
+			)}
 			<div
-				className={`border box-border ${id === itemId && 'bg-blue-400'}`}
-				onClick={handleClick}></div>
+				className={`border box-border ${
+					checked.includes(details.id) ? 'bg-blue-400 z-10 opacity-20' : null
+				}`}
+				onClick={setAsChecked}>
+				{prodArr.map((product) => (
+					<div key={product.name}></div>
+				))}
+			</div>
 		</>
 	);
 }
