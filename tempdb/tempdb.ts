@@ -2,7 +2,7 @@ const tempdb = [
 	{
 		id: 1,
 		prodArr: [
-			{ name: '123ABC', amount: 10 },
+			{ name: '666BGD', amount: 10 },
 			{ name: '456DEF', amount: 5 },
 		],
 	},
@@ -37,7 +37,7 @@ const tempdb = [
 	{
 		id: 6,
 		prodArr: [
-			{ name: '9598HG', amount: 10 },
+			{ name: 'ABC666', amount: 10 },
 			{ name: 'HUH456', amount: 5 },
 		],
 	},
