@@ -2,10 +2,12 @@
 import React, { useState } from 'react';
 import tempdb from '@/tempdb/tempdb';
 import { useAppContext } from '@/app/context/AppContext';
+import { useRef } from 'react';
 
 export default function Search() {
 	const [value, setValue] = useState('');
 	const { setChecked } = useAppContext();
+	const inputRef = useRef<HTMLInputElement | null>(null);
 
 	const findElements = (value: string) => {
 		const foundAreas = tempdb.filter((item) =>
@@ -19,6 +21,7 @@ export default function Search() {
 	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 
+		inputRef.current?.blur();
 		const idsFound = findElements(value);
 		setChecked(idsFound);
 
@@ -41,6 +44,8 @@ export default function Search() {
 						required
 						value={value}
 						onChange={handleInputChange}
+						onFocus={blur}
+						ref={inputRef}
 					/>
 					<button
 						type='submit'
