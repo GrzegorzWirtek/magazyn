@@ -28,7 +28,7 @@ export default function Area({ details }: Props) {
 			)}
 			<div
 				className={`border box-border ${
-					checked.includes(details.id) ? 'bg-blue-500' : null
+					checked.includes(details.id) && 'bg-blue-500'
 				}`}
 				onClick={setAsChecked}>
 				{prodArr.map((product) => (

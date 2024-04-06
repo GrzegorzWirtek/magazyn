@@ -11,9 +11,11 @@ export default function PreviewArea() {
 			{tempdb.map((area) => (
 				<div
 					key={area.id}
-					className={`border box-border ${
+					className={`flex justify-center items-center border box-border ${
 						checked.includes(area.id) && 'bg-blue-500'
-					}`}></div>
+					}`}>
+					{checked.includes(area.id) && <p className='text-xl'>{area.id}</p>}
+				</div>
 			))}
 		</div>
 	);
