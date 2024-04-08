@@ -6,7 +6,7 @@ import { useRef } from 'react';
 
 export default function Search() {
 	const [value, setValue] = useState('');
-	const { setChecked } = useAppContext();
+	const { setChecked, setSearchValue } = useAppContext();
 	const inputRef = useRef<HTMLInputElement | null>(null);
 
 	const findElements = (value: string) => {
@@ -24,17 +24,30 @@ export default function Search() {
 		inputRef.current?.blur();
 		const idsFound = findElements(value);
 		setChecked(idsFound);
-
-		setValue('');
+		setSearchValue(value);
 	};
 
 	const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setValue(e.target.value);
 	};
 
+	const handleClearInput = () => {
+		setValue('');
+		setSearchValue('');
+		setChecked([]);
+	};
+
 	return (
-		<form className='w-full' onSubmit={handleSubmit}>
-			<div className='flex'>
+		<form className='flex w-full' onSubmit={handleSubmit}>
+			<button className='h-full w-[22px] mr-2 ' type='submit'>
+				<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 512'>
+					<path
+						fill='#858585'
+						d='M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z'
+					/>
+				</svg>
+			</button>
+			<div className='flex grow'>
 				<div className='relative w-full'>
 					<input
 						type='search'
@@ -44,24 +57,16 @@ export default function Search() {
 						required
 						value={value}
 						onChange={handleInputChange}
-						onFocus={blur}
 						ref={inputRef}
 					/>
 					<button
-						type='submit'
-						className='absolute top-0 end-0 p-4 text-sm font-medium h-full text-white bg-blue-700 rounded-e-lg border border-blue-700 hover:bg-blue-800 focus:ring-4'>
-						<svg
-							className='w-4 h-4'
-							aria-hidden='true'
-							xmlns='http://www.w3.org/2000/svg'
-							fill='none'
-							viewBox='0 0 20 20'>
+						type='button'
+						className='absolute top-[2px] bottom-[2px] mr-[1px] end-0 px-[10px] w-[42px] bg-white rounded-e-lg border-l'
+						onClick={handleClearInput}>
+						<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 384 512'>
 							<path
-								stroke='currentColor'
-								strokeLinecap='round'
-								strokeLinejoin='round'
-								strokeWidth='2'
-								d='m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z'
+								fill='#858585'
+								d='M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z'
 							/>
 						</svg>
 						<span className='sr-only'>Search</span>

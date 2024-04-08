@@ -7,7 +7,7 @@ export default function PreviewArea() {
 	const { checked } = useAppContext();
 
 	return (
-		<div className='h-[300px] aspect-[2/3] bg-blue-300 grid grid-cols-4 box-border'>
+		<div className='h-[250px] aspect-[2/3] bg-blue-300 grid grid-cols-4 grid-rows-4 box-border'>
 			{tempdb.map((area) => (
 				<div
 					key={area.id}

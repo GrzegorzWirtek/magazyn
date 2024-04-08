@@ -2,10 +2,10 @@
 
 import Details from './Details';
 import { useAppContext } from '@/app/context/AppContext';
-import { Area } from '@/utils/types';
+import { Area as AreaType } from '@/utils/types';
 
 type Props = {
-	details: Area;
+	details: AreaType;
 };
 
 export default function Area({ details }: Props) {
