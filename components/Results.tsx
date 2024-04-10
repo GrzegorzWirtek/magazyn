@@ -6,23 +6,33 @@ export default function Results() {
 	const { checked, searchValue } = useAppContext();
 
 	if (searchValue === '') return;
-	if (checked.length < 1) return <p>No results</p>;
+	if (checked.length < 1) return <p>Brak elementów o podanej nazwie</p>;
 
-	const checkedAreas = tempdb.filter((item) => checked.includes(item.id));
-	const onlySelected = checkedAreas.map((item) => {
-		return {
-			id: item.id,
-			prodArr: item.prodArr.filter((item) => item.name.includes(searchValue)),
-		};
-	});
+	const checkedAreas = tempdb
+		.filter((item) => checked.includes(item.id))
+		.map((item) => {
+			return {
+				id: item.id,
+				prodArr: item.prodArr.filter((item) =>
+					item.name.toUpperCase().includes(searchValue.toUpperCase()),
+				),
+			};
+		});
 
 	return (
-		<div className='w-full grow shrink bg-red-300 overflow-y-scroll'>
-			{onlySelected.map((item, index) => (
-				<div key={index} className='border m-1 p-1'>
-					<h3>{item.id}</h3>
+		<div className='w-full grow shrink overflow-y-scroll'>
+			{checkedAreas.map((item, index) => (
+				<div
+					key={index}
+					className='mb-2 p-2 border-solid border-[1px] border-gray-400 rounded'>
+					<h3 className='w-[28px] mb-2 text-center leading-8 bg-blue-400 rounded'>
+						{item.id}
+					</h3>
 					{item.prodArr.map((item) => (
-						<p key={item.name}>{item.name}</p>
+						<div key={item.name} className='flex'>
+							<p className='basis-[88%]'>{item.name}</p>
+							<p>{item.amount}</p>
+						</div>
 					))}
 				</div>
 			))}

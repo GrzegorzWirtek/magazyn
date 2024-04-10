@@ -11,7 +11,9 @@ export default function Search() {
 
 	const findElements = (value: string) => {
 		const foundAreas = tempdb.filter((item) =>
-			item.prodArr.some((area) => area.name.includes(value)),
+			item.prodArr.some((area) =>
+				area.name.toUpperCase().includes(value.toUpperCase()),
+			),
 		);
 
 		const idArray = foundAreas.map((item) => item.id);
