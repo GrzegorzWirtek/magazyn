@@ -6,7 +6,7 @@ import { useRef } from 'react';
 
 export default function Search() {
 	const [value, setValue] = useState('');
-	const { setChecked, setSearchValue } = useAppContext();
+	const { setChecked, setSearchValue, setCheckedArea } = useAppContext();
 	const inputRef = useRef<HTMLInputElement | null>(null);
 
 	const findElements = (value: string) => {
@@ -27,6 +27,7 @@ export default function Search() {
 		const idsFound = findElements(value);
 		setChecked(idsFound);
 		setSearchValue(value);
+		setCheckedArea(null);
 	};
 
 	const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -37,6 +38,7 @@ export default function Search() {
 		setValue('');
 		setSearchValue('');
 		setChecked([]);
+		setCheckedArea(null);
 	};
 
 	return (

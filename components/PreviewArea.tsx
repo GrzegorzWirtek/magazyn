@@ -4,7 +4,7 @@ import tempdb from '@/tempdb/tempdb';
 import { useAppContext } from '@/app/context/AppContext';
 
 export default function PreviewArea() {
-	const { checked } = useAppContext();
+	const { checked, checkedArea } = useAppContext();
 
 	return (
 		<div>
@@ -14,7 +14,7 @@ export default function PreviewArea() {
 						key={area.id}
 						className={`flex justify-center items-center border box-border rounded ${
 							checked.includes(area.id) ? 'bg-blue-400' : 'bg-blue-200'
-						}`}>
+						} ${checkedArea === area.id && 'bg-red-500'}`}>
 						{checked.includes(area.id) && <p className='text-xl'>{area.id}</p>}
 					</div>
 				))}

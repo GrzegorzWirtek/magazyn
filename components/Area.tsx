@@ -1,40 +1,42 @@
 'use client';
 
-import Details from './Details';
-import { useAppContext } from '@/app/context/AppContext';
 import { Area as AreaType } from '@/utils/types';
+import { useAppContext } from '@/app/context/AppContext';
 
 type Props = {
-	details: AreaType;
+	item: AreaType;
 };
 
-export default function Area({ details }: Props) {
-	const { prodArr } = details;
-	const { checked, setChecked } = useAppContext();
+export default function Area({ item }: Props) {
+	const { checkedArea, setCheckedArea } = useAppContext();
 
-	const hidePopup = () => {
-		setChecked([]);
+	const handleClick = () => {
+		setCheckedArea(item.id);
 	};
 
-	const setAsChecked = () => {
-		if (checked.length > 0) return setChecked([]);
-		setChecked([details.id]);
+	const handleDoubleClick = () => {
+		setCheckedArea(null);
 	};
 
 	return (
-		<>
-			{checked.includes(details.id) && (
-				<Details details={details} hidePopup={hidePopup} />
-			)}
-			<div
-				className={`border box-border ${
-					checked.includes(details.id) && 'bg-blue-500'
-				}`}
-				onClick={setAsChecked}>
-				{prodArr.map((product) => (
-					<div key={product.name}></div>
-				))}
-			</div>
-		</>
+		<div
+			className={`mb-2 p-2 border-solid border-[1px] border-gray-400 rounded ${
+				checkedArea === item.id && 'bg-gray-300'
+			}`}
+			onClick={handleClick}
+			onDoubleClick={handleDoubleClick}>
+			<h3
+				className={`w-[28px] mb-2 text-center leading-8 bg-blue-400 rounded ${
+					checkedArea === item.id && 'bg-red-500'
+				}`}>
+				{item.id}
+			</h3>
+			{item.prodArr.map((item) => (
+				<div key={item.name} className='flex'>
+					<p className='basis-[88%]'>{item.name}</p>
+					<p>{item.amount}</p>
+				</div>
+			))}
+		</div>
 	);
 }

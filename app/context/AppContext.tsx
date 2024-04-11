@@ -7,6 +7,8 @@ interface ContextProps {
 	setChecked: Dispatch<SetStateAction<number[]>>;
 	searchValue: string;
 	setSearchValue: Dispatch<SetStateAction<string>>;
+	checkedArea: null | number;
+	setCheckedArea: Dispatch<SetStateAction<null | number>>;
 }
 
 const initialState = {
@@ -14,6 +16,8 @@ const initialState = {
 	setChecked: () => {},
 	searchValue: '',
 	setSearchValue: () => {},
+	checkedArea: null,
+	setCheckedArea: () => {},
 };
 
 const AppContext = createContext<ContextProps>(initialState);
@@ -23,6 +27,7 @@ export const AppContextProvider = ({
 }: React.PropsWithChildren<{}>) => {
 	const [checked, setChecked] = useState<number[]>([]);
 	const [searchValue, setSearchValue] = useState<string>('');
+	const [checkedArea, setCheckedArea] = useState<null | number>(null);
 
 	return (
 		<AppContext.Provider
@@ -31,6 +36,8 @@ export const AppContextProvider = ({
 				setChecked,
 				searchValue,
 				setSearchValue,
+				checkedArea,
+				setCheckedArea,
 			}}>
 			{children}
 		</AppContext.Provider>
