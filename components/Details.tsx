@@ -1,28 +1,35 @@
-import { Area } from '@/utils/types';
-import PreviewArea from './PreviewArea';
+'use client';
 
-type Props = {
-	details: Area;
-	hidePopup: () => void;
-};
+import PlanPreview from './PlanPreview';
+import { useAppContext } from '@/app/context/AppContext';
+import tempdb from '@/tempdb/tempdb';
 
-export default function Details({ details, hidePopup }: Props) {
-	const { prodArr } = details;
+export default function Details() {
+	const { detailsActive, setDetailsActive, checkedArea } = useAppContext();
+
+	if (!detailsActive) return;
+
+	const prodArr = tempdb.filter((item) => item.id === checkedArea)[0].prodArr;
+
+	const handleExit = () => {
+		setDetailsActive(false);
+	};
+
 	return (
 		<div className='flex flex-col items-center justify-start fixed top-0 left-[50%] translate-x-[-50%] w-[50vh] h-screen p-4 bg-green-400'>
-			<div className='flex flex-wrap h-[30vh] w-full mb-4'>
-				<div className='flex flex-col justify-center px-4 gap-4 basis-1/2'>
-					<button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded duration-100'>
-						EDYTUJ
-					</button>
-					<button
-						className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded duration-100'
-						onClick={hidePopup}>
-						WYJDŹ
-					</button>
-				</div>
-				<div className='basis-1/2 h-full flex justify-center'>
-					<PreviewArea />
+			<div className='flex flex-wrap w-full'>
+				<div className='flex flex-wrap w-full h-[30vh]'>
+					<div className='basis-1/2 flex flex-col justify-center gap-4'>
+						<button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded duration-100'>
+							EDYTUJ
+						</button>
+						<button
+							className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded duration-100'
+							onClick={handleExit}>
+							WYJDŹ
+						</button>
+					</div>
+					<PlanPreview checkedArea={checkedArea} />
 				</div>
 			</div>
 			<div className='w-full'>

@@ -8,14 +8,14 @@ type Props = {
 };
 
 export default function Area({ item }: Props) {
-	const { checkedArea, setCheckedArea } = useAppContext();
+	const { checkedArea, setCheckedArea, setDetailsActive } = useAppContext();
 
 	const handleClick = () => {
 		setCheckedArea(item.id);
 	};
 
 	const handleDoubleClick = () => {
-		setCheckedArea(null);
+		setDetailsActive(true);
 	};
 
 	return (

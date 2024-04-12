@@ -3,7 +3,7 @@
 import tempdb from '@/tempdb/tempdb';
 import { useAppContext } from '@/app/context/AppContext';
 
-export default function PreviewArea() {
+export default function Plan() {
 	const { checked, checkedArea } = useAppContext();
 
 	return (
