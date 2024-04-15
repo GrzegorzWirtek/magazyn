@@ -4,6 +4,10 @@ const tempdb = [
 		prodArr: [
 			{ name: '666BGD', amount: 10 },
 			{ name: '456666', amount: 5 },
+			{ name: '665BGD', amount: 20 },
+			{ name: 'KJI548', amount: 14 },
+			{ name: 'OOO565', amount: 4 },
+			{ name: 'POL123', amount: 30 },
 		],
 	},
 	{

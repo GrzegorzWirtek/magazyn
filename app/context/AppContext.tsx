@@ -11,6 +11,8 @@ interface ContextProps {
 	setCheckedArea: Dispatch<SetStateAction<null | number>>;
 	detailsActive: boolean;
 	setDetailsActive: Dispatch<SetStateAction<boolean>>;
+	editActive: boolean;
+	setEditActive: Dispatch<SetStateAction<boolean>>;
 }
 
 const initialState = {
@@ -22,6 +24,8 @@ const initialState = {
 	setCheckedArea: () => {},
 	detailsActive: false,
 	setDetailsActive: () => {},
+	editActive: false,
+	setEditActive: () => {},
 };
 
 const AppContext = createContext<ContextProps>(initialState);
@@ -33,7 +37,7 @@ export const AppContextProvider = ({
 	const [searchValue, setSearchValue] = useState<string>('');
 	const [checkedArea, setCheckedArea] = useState<null | number>(null);
 	const [detailsActive, setDetailsActive] = useState<boolean>(false);
-
+	const [editActive, setEditActive] = useState(false);
 	return (
 		<AppContext.Provider
 			value={{
@@ -45,6 +49,8 @@ export const AppContextProvider = ({
 				setCheckedArea,
 				detailsActive,
 				setDetailsActive,
+				editActive,
+				setEditActive,
 			}}>
 			{children}
 		</AppContext.Provider>

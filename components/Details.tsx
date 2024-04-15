@@ -3,9 +3,18 @@
 import PlanPreview from './PlanPreview';
 import { useAppContext } from '@/app/context/AppContext';
 import tempdb from '@/tempdb/tempdb';
+import DetailsList from './DetailsList';
+import { useState } from 'react';
+import DetailsListEdit from './DetailsListEdit';
 
 export default function Details() {
-	const { detailsActive, setDetailsActive, checkedArea } = useAppContext();
+	const {
+		detailsActive,
+		setDetailsActive,
+		checkedArea,
+		editActive,
+		setEditActive,
+	} = useAppContext();
 
 	if (!detailsActive) return;
 
@@ -13,6 +22,11 @@ export default function Details() {
 
 	const handleExit = () => {
 		setDetailsActive(false);
+		setEditActive(false);
+	};
+
+	const handleEdit = () => {
+		setEditActive(true);
 	};
 
 	return (
@@ -20,9 +34,14 @@ export default function Details() {
 			<div className='flex flex-wrap w-full'>
 				<div className='flex flex-wrap w-full h-[30vh]'>
 					<div className='basis-1/2 flex flex-col justify-center gap-4'>
-						<button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded duration-100'>
-							EDYTUJ
-						</button>
+						{!editActive && (
+							<button
+								className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded duration-100'
+								onClick={handleEdit}>
+								EDYTUJ
+							</button>
+						)}
+
 						<button
 							className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded duration-100'
 							onClick={handleExit}>
@@ -32,24 +51,7 @@ export default function Details() {
 					<PlanPreview checkedArea={checkedArea} />
 				</div>
 			</div>
-			<div className='w-full'>
-				<table className='w-full table-auto bg-red-400'>
-					<thead>
-						<tr>
-							<th className='border py-1 px-2'>Nazwa</th>
-							<th className='border py-1 px-2'>Liczba</th>
-						</tr>
-					</thead>
-					<tbody>
-						{prodArr.map((product) => (
-							<tr key={product.name} className=''>
-								<td className='border py-1 px-2'>{product.name}</td>
-								<td className='border py-1 px-2'>{product.amount}</td>
-							</tr>
-						))}
-					</tbody>
-				</table>
-			</div>
+			{editActive ? <DetailsListEdit /> : <DetailsList />}
 		</div>
 	);
 }

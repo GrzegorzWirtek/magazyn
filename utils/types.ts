@@ -1,4 +1,6 @@
+export type prodArr = { name: string; amount: number }[];
+
 export type Area = {
 	id: number;
-	prodArr: { name: string; amount: number }[];
+	prodArr: prodArr;
 };
