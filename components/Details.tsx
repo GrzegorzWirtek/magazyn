@@ -29,10 +29,14 @@ export default function Details() {
 		setEditActive(true);
 	};
 
+	const handleCancelEdit = () => {
+		setEditActive(false);
+	};
+
 	return (
 		<div className='flex flex-col items-center justify-start fixed top-0 left-[50%] translate-x-[-50%] w-[50vh] h-screen p-4 bg-green-400'>
 			<div className='flex flex-wrap w-full'>
-				<div className='flex flex-wrap w-full h-[30vh]'>
+				<div className='flex flex-wrap w-full'>
 					<div className='basis-1/2 flex flex-col justify-center gap-4'>
 						{!editActive && (
 							<button
@@ -41,12 +45,19 @@ export default function Details() {
 								EDYTUJ
 							</button>
 						)}
-
-						<button
-							className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded duration-100'
-							onClick={handleExit}>
-							WYJDŹ
-						</button>
+						{!editActive ? (
+							<button
+								className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded duration-100'
+								onClick={handleExit}>
+								WYJDŹ
+							</button>
+						) : (
+							<button
+								className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded duration-100'
+								onClick={handleCancelEdit}>
+								ANULUJ
+							</button>
+						)}
 					</div>
 					<PlanPreview checkedArea={checkedArea} />
 				</div>
