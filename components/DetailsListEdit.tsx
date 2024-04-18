@@ -1,8 +1,27 @@
+'use client';
+
 import { useAppContext } from '@/app/context/AppContext';
 import tempdb from '@/tempdb/tempdb';
+import { useState } from 'react';
 
 export default function DetailsListEdit() {
 	const { checkedArea } = useAppContext();
+
+	const prodArr = tempdb.filter((item) => item.id === checkedArea)[0].prodArr;
+
+	const [products, setProducts] = useState(prodArr);
+
+	const handleChange = (
+		e: React.FormEvent<HTMLInputElement>,
+		arrayIndex: number,
+		key: string,
+	) => {
+		const { value } = e.currentTarget;
+
+		const newState = [...products];
+		newState[arrayIndex] = { ...newState[arrayIndex], [key]: value };
+		setProducts(newState);
+	};
 
 	const handleSubmit = (e: React.FormEvent) => {
 		e.preventDefault();
@@ -17,10 +36,9 @@ export default function DetailsListEdit() {
 		console.log(`delete ${productName}`);
 	};
 
-	const prodArr = tempdb.filter((item) => item.id === checkedArea)[0].prodArr;
 	return (
 		<form
-			className='w-full flex flex-wrap justify-between bg-yellow-400'
+			className='w-full flex flex-wrap justify-between'
 			onSubmit={handleSubmit}>
 			<button
 				type='button'
@@ -33,16 +51,22 @@ export default function DetailsListEdit() {
 			</button>
 			<table className='w-full mt-4  table-auto bg-red-400'>
 				<tbody>
-					{prodArr.map((product) => (
-						<tr key={product.name} className=''>
+					{products.map((product, index) => (
+						<tr key={index} className=''>
 							<td className='border py-1 px-2 w-[70%]'>
-								<input type='text' value={product.name} className='w-full' />
+								<input
+									type='text'
+									value={product.name}
+									className='w-full'
+									onChange={(e) => handleChange(e, index, 'name')}
+								/>
 							</td>
 							<td className='border py-1 px-2 w-[15%]'>
 								<input
 									type='number'
 									value={product.amount}
 									className='w-full'
+									onChange={(e) => handleChange(e, index, 'amount')}
 								/>
 							</td>
 							<td className='border py-1 px-2 w-[15%] font-semibold text-red-900'>
@@ -50,6 +74,7 @@ export default function DetailsListEdit() {
 									type='number'
 									value={product.level}
 									className='w-full font-semibold text-red-900'
+									onChange={(e) => handleChange(e, index, 'level')}
 								/>
 							</td>
 							<td className='border py-1 px-2 w-[15%] font-semibold text-red-900'>
