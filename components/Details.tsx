@@ -4,7 +4,6 @@ import PlanPreview from './PlanPreview';
 import { useAppContext } from '@/app/context/AppContext';
 import tempdb from '@/tempdb/tempdb';
 import DetailsList from './DetailsList';
-import { useState } from 'react';
 import DetailsListEdit from './DetailsListEdit';
 
 export default function Details() {

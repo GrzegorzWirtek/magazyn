@@ -7,8 +7,8 @@ export default function DeletePopup({ deletedItem, deletePopup }: DeletedItem) {
 	const { productName, index } = deletedItem;
 
 	return (
-		<div className='fixed top-0 left-0 w-full h-full flex justify-center items-center bg-red-600'>
-			<div className='flex flex-wrap justify-center items-center gap-4'>
+		<div className='fixed top-0 left-0 w-full h-full flex justify-center items-center backdrop-blur'>
+			<div className='flex flex-wrap justify-center items-center gap-4 bg-white py-20'>
 				<h3 className='basis-full text-center'>
 					Czy na pewno chcesz usunąć produkt <strong>{productName}</strong>?
 				</h3>

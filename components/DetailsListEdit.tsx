@@ -4,6 +4,7 @@ import { useAppContext } from '@/app/context/AppContext';
 import tempdb from '@/tempdb/tempdb';
 import { useState } from 'react';
 import DeletePopup from './DeletePopup';
+import AddForm from './AddForm';
 
 type DeleteItem = {
 	productName: string;
@@ -11,7 +12,7 @@ type DeleteItem = {
 };
 
 export default function DetailsListEdit() {
-	const { checkedArea } = useAppContext();
+	const { checkedArea, addNewActive, setAddNewActive } = useAppContext();
 
 	const prodArr = tempdb.filter((item) => item.id === checkedArea)[0].prodArr;
 
@@ -37,7 +38,7 @@ export default function DetailsListEdit() {
 	};
 
 	const handleAddNew = () => {
-		console.log('Add new!');
+		setAddNewActive(true);
 	};
 
 	const handleDelete = (productName: string, index: number) => {
@@ -63,6 +64,8 @@ export default function DetailsListEdit() {
 			{deletePopupActive && (
 				<DeletePopup deletedItem={deletedItem} deletePopup={deletePopup} />
 			)}
+
+			{addNewActive && <AddForm />}
 
 			<form
 				className='w-full flex flex-wrap justify-between'
