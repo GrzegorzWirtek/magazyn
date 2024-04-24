@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { useAppContext } from '@/app/context/AppContext';
 
 type NewProduct = {
 	name: string;
@@ -10,14 +11,21 @@ type NewProduct = {
 
 export default function AddForm() {
 	const [newProduct, setNewProduct] = useState({} as NewProduct);
+	const { setAddNewActive } = useAppContext();
 
 	const handleChange = (e: React.FormEvent<HTMLInputElement>, key: string) => {
 		const { value } = e.currentTarget;
 		setNewProduct((prev) => ({ ...prev, [key]: value }));
 	};
 
-	const handleSubmit = () => {
-		console.log('added');
+	const handleSubmit = (e: React.FormEvent) => {
+		e.preventDefault();
+		setNewProduct({} as NewProduct);
+		console.log('New product added');
+	};
+
+	const handleCancel = () => {
+		setAddNewActive(false);
 	};
 
 	return (
@@ -34,6 +42,7 @@ export default function AddForm() {
 									value={newProduct.name || ''}
 									className='w-full'
 									onChange={(e) => handleChange(e, 'name')}
+									required
 								/>
 							</td>
 							<td className='border py-1 px-2 w-[15%]'>
@@ -42,6 +51,8 @@ export default function AddForm() {
 									value={newProduct.amount || ''}
 									className='w-full'
 									onChange={(e) => handleChange(e, 'amount')}
+									required
+									min='0'
 								/>
 							</td>
 							<td className='border py-1 px-2 w-[15%] font-semibold text-red-900'>
@@ -50,6 +61,8 @@ export default function AddForm() {
 									value={newProduct.level || ''}
 									className='w-full font-semibold text-red-900'
 									onChange={(e) => handleChange(e, 'level')}
+									required
+									min='0'
 								/>
 							</td>
 							<td className='border py-1 px-2 w-[15%] font-semibold text-red-900'></td>
@@ -64,7 +77,8 @@ export default function AddForm() {
 				</button>
 				<button
 					type='button'
-					className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'>
+					className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'
+					onClick={handleCancel}>
 					ANULUJ
 				</button>
 			</form>
