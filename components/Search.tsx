@@ -25,6 +25,7 @@ export default function Search() {
 
 		inputRef.current?.blur();
 		const idsFound = findElements(value);
+		console.log('ids', idsFound);
 		setChecked(idsFound);
 		setSearchValue(value);
 		setCheckedArea(null);

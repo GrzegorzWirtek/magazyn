@@ -20,8 +20,9 @@ export default function AddForm() {
 
 	const handleSubmit = (e: React.FormEvent) => {
 		e.preventDefault();
-		setNewProduct({} as NewProduct);
 		console.log('New product added');
+		setNewProduct({} as NewProduct);
+		setAddNewActive(false);
 	};
 
 	const handleCancel = () => {

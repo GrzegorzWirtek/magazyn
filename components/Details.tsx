@@ -17,8 +17,6 @@ export default function Details() {
 
 	if (!detailsActive) return;
 
-	const prodArr = tempdb.filter((item) => item.id === checkedArea)[0].prodArr;
-
 	const handleExit = () => {
 		setDetailsActive(false);
 		setEditActive(false);

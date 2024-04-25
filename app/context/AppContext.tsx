@@ -3,6 +3,8 @@ import { createContext, useContext, useState } from 'react';
 import { Dispatch, SetStateAction } from 'react';
 
 interface ContextProps {
+	layout: 'search' | 'edit';
+	setLayout: Dispatch<SetStateAction<'search' | 'edit'>>;
 	checked: number[];
 	setChecked: Dispatch<SetStateAction<number[]>>;
 	searchValue: string;
@@ -18,6 +20,8 @@ interface ContextProps {
 }
 
 const initialState = {
+	layout: 'search' as 'search' | 'edit',
+	setLayout: () => {},
 	checked: [],
 	setChecked: () => {},
 	searchValue: '',
@@ -43,6 +47,7 @@ export const AppContextProvider = ({
 	const [detailsActive, setDetailsActive] = useState<boolean>(false);
 	const [editActive, setEditActive] = useState(false);
 	const [addNewActive, setAddNewActive] = useState(false);
+	const [layout, setLayout] = useState<'search' | 'edit'>('search');
 
 	return (
 		<AppContext.Provider
@@ -59,6 +64,8 @@ export const AppContextProvider = ({
 				setEditActive,
 				addNewActive,
 				setAddNewActive,
+				layout,
+				setLayout,
 			}}>
 			{children}
 		</AppContext.Provider>
