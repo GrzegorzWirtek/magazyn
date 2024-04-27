@@ -8,10 +8,10 @@ import Results from '@/components/Results';
 import Search from '@/components/Search';
 
 export default function Home() {
-	const { layout, setLayout } = useAppContext();
+	const { currentLayout, setCurrentLayout } = useAppContext();
 
-	const currentLayout =
-		layout === 'search' ? (
+	const chosenLayout =
+		currentLayout === 'search' ? (
 			<>
 				<Search />
 				<Plan />
@@ -23,7 +23,7 @@ export default function Home() {
 	return (
 		<main className='flex flex-col items-center gap-4 h-screen max-w-[460px] mx-auto p-4 bg-green-200'>
 			<LayoutButtons />
-			{currentLayout}
+			{chosenLayout}
 			<Results />
 			<Details />
 		</main>

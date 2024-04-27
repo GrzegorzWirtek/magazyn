@@ -1,9 +1,11 @@
+'use client';
+
 import { useAppContext } from '@/app/context/AppContext';
 
 export default function LayoutButtons() {
 	const {
-		layout,
-		setLayout,
+		currentLayout,
+		setCurrentLayout,
 		setChecked,
 		setSearchValue,
 		setCheckedArea,
@@ -17,23 +19,24 @@ export default function LayoutButtons() {
 		setDetailsActive(false);
 	};
 
-	const handleLayoutChange = (layout: 'search' | 'edit') => {
-		setLayout(layout);
+	const handleLayoutChange = (chosenLayout: 'search' | 'edit') => {
+		setCurrentLayout(chosenLayout);
 		resetSettings();
 	};
 
 	return (
 		<div className='w-full flex justify-around'>
 			<button
-				className={`w-[45%] bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded opacity-40 ${
-					layout === 'search' && 'opacity-100'
+				className={`w-[45%] bg-blue-300 text-white font-bold py-2 px-4 rounded ${
+					currentLayout === 'search' && 'bg-blue-700'
 				}`}
 				onClick={() => handleLayoutChange('search')}>
 				SZUKANIE
 			</button>
+
 			<button
-				className={`w-[45%] bg-blue-500 hover:bg-blue-700 opacity-40 text-white font-bold py-2 px-4 rounded ${
-					layout === 'edit' && 'opacity-100'
+				className={`w-[45%] bg-blue-300 text-white font-bold py-2 px-4 rounded ${
+					currentLayout === 'edit' && 'bg-blue-700'
 				}`}
 				onClick={() => handleLayoutChange('edit')}>
 				EDYCJA
