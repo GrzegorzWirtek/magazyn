@@ -4,6 +4,7 @@ import { useAppContext } from '@/app/context/AppContext';
 import Details from '@/components/Details';
 import LayoutButtons from '@/components/LayoutButtons';
 import Plan from '@/components/Plan';
+import PlanFullScreen from '@/components/PlanFullScreen';
 import Results from '@/components/Results';
 import Search from '@/components/Search';
 
@@ -17,7 +18,7 @@ export default function Home() {
 				<Plan />
 			</>
 		) : (
-			<p>details</p>
+			<PlanFullScreen />
 		);
 
 	return (

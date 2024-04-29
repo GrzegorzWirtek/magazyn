@@ -12,7 +12,8 @@ type DeleteItem = {
 };
 
 export default function DetailsListEdit() {
-	const { checkedArea, addNewActive, setAddNewActive } = useAppContext();
+	const { checkedArea, addNewActive, setAddNewActive, setEditActive } =
+		useAppContext();
 
 	const prodArr = tempdb.filter((item) => item.id === checkedArea)[0].prodArr;
 
@@ -70,6 +71,11 @@ export default function DetailsListEdit() {
 			<form
 				className='w-full flex flex-wrap justify-between'
 				onSubmit={handleSubmit}>
+				<button
+					className='basis-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mb-4 rounded duration-100'
+					onClick={() => setEditActive(false)}>
+					ANULUJ
+				</button>
 				<button
 					type='button'
 					className='basis-[45%] bg-red-900 text-white p-2'
