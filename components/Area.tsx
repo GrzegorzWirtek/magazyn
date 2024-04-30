@@ -2,6 +2,7 @@
 
 import { Area as AreaType } from '@/utils/types';
 import { useAppContext } from '@/app/context/AppContext';
+import DetailsList from './DetailsList';
 
 type Props = {
 	item: AreaType;
@@ -31,12 +32,7 @@ export default function Area({ item }: Props) {
 				}`}>
 				{item.id}
 			</h3>
-			{item.prodArr.map((item) => (
-				<div key={item.name} className='flex'>
-					<p className='basis-[88%]'>{item.name}</p>
-					<p>{item.amount}</p>
-				</div>
-			))}
+			<DetailsList prodArr={item.prodArr} />
 		</div>
 	);
 }

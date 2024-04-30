@@ -22,7 +22,7 @@ export default function Results() {
 
 	return (
 		<div className='w-full grow shrink overflow-y-scroll'>
-			{checkedAreas.map((item, index) => (
+			{checkedAreas.map((item) => (
 				<Area key={item.id} item={item} />
 			))}
 		</div>

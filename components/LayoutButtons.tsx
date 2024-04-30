@@ -10,6 +10,7 @@ export default function LayoutButtons() {
 		setSearchValue,
 		setCheckedArea,
 		setDetailsActive,
+		setEditActive,
 	} = useAppContext();
 
 	const resetSettings = () => {
@@ -17,6 +18,7 @@ export default function LayoutButtons() {
 		setSearchValue('');
 		setCheckedArea(null);
 		setDetailsActive(false);
+		setEditActive(false);
 	};
 
 	const handleLayoutChange = (chosenLayout: 'search' | 'edit') => {

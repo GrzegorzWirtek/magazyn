@@ -1,11 +1,6 @@
-import { useAppContext } from '@/app/context/AppContext';
-import tempdb from '@/tempdb/tempdb';
+import { ProdArr } from '@/utils/types';
 
-export default function DetailsList() {
-	const { checkedArea } = useAppContext();
-
-	const prodArr = tempdb.filter((item) => item.id === checkedArea)[0].prodArr;
-
+export default function DetailsList({ prodArr }: { prodArr: ProdArr }) {
 	return (
 		<div className='w-full'>
 			<table className='w-full table-auto bg-orange-400'>

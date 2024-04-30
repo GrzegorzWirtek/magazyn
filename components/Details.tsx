@@ -30,6 +30,8 @@ export default function Details() {
 		setEditActive(false);
 	};
 
+	const prodArr = tempdb.filter((item) => item.id === checkedArea)[0].prodArr;
+
 	return (
 		<div className='flex flex-col items-center justify-start fixed top-0 left-[50%] translate-x-[-50%] w-[50vh] h-screen p-4 bg-green-400'>
 			<div className='flex flex-wrap w-full mb-8'>
@@ -53,7 +55,7 @@ export default function Details() {
 					<PlanPreview checkedArea={checkedArea} />
 				</div>
 			</div>
-			{editActive ? <DetailsListEdit /> : <DetailsList />}
+			{editActive ? <DetailsListEdit /> : <DetailsList prodArr={prodArr} />}
 		</div>
 	);
 }
