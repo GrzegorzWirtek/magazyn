@@ -60,6 +60,10 @@ export default function DetailsListEdit() {
 		setDeletedItem({} as DeleteItem);
 	};
 
+	const handleFocus = (e: any) => {
+		e.target.select();
+	};
+
 	return (
 		<>
 			{deletePopupActive && (
@@ -72,53 +76,56 @@ export default function DetailsListEdit() {
 				className='w-full flex flex-wrap justify-between'
 				onSubmit={handleSubmit}>
 				<button
-					className='basis-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mb-4 rounded duration-100'
+					className='basis-full bg-orange-600 hover:bg-orange-500 text-white font-bold py-2 px-4 mb-4 rounded duration-100'
 					onClick={() => setEditActive(false)}>
 					ANULUJ
 				</button>
 				<button
 					type='button'
-					className='basis-[45%] bg-red-900 text-white p-2'
+					className='basis-[48%] bg-blue-700 hover:bg-blue-600 text-white font-bold py-2 rounded'
 					onClick={handleAddNew}>
 					DODAJ NOWY
 				</button>
 				<button
 					type='submit'
-					className='basis-[45%] bg-red-900 text-white py-2'>
+					className='basis-[48%] bg-red-700 hover:bg-red-600 text-white font-bold py-2 rounded'>
 					ZATWIERDŹ ZMIANY
 				</button>
-				<table className='w-full mt-4  table-auto bg-red-400'>
+				<table className='w-full mt-4  table-auto'>
 					<tbody>
 						{products.map((product, index) => (
 							<tr key={index} className=''>
-								<td className='border py-1 px-2 w-[70%]'>
+								<td className='border py-1 px-2 w-[60%]'>
 									<input
 										type='text'
 										value={product.name}
-										className='w-full'
+										className='w-full outline-none'
 										onChange={(e) => handleChange(e, index, 'name')}
+										onFocus={handleFocus}
 									/>
 								</td>
 								<td className='border py-1 px-2 w-[15%]'>
 									<input
 										type='number'
 										value={product.amount}
-										className='w-full'
+										className='w-full outline-none'
 										onChange={(e) => handleChange(e, index, 'amount')}
+										onFocus={handleFocus}
 									/>
 								</td>
 								<td className='border py-1 px-2 w-[15%] font-semibold text-red-900'>
 									<input
 										type='number'
 										value={product.level}
-										className='w-full font-semibold text-red-900'
+										className='w-full outline-none font-semibold text-red-900'
 										onChange={(e) => handleChange(e, index, 'level')}
+										onFocus={handleFocus}
 									/>
 								</td>
-								<td className='border py-1 px-2 w-[15%] font-semibold text-red-900'>
+								<td className='border w-[10%] font-semibold bg-red-700 hover:bg-red-600'>
 									<button
 										type='button'
-										className='font-bold px-2'
+										className='font-bold w-full h-[100%] px-2 text-white '
 										onClick={() => handleDelete(product.name, index)}>
 										X
 									</button>

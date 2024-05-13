@@ -15,14 +15,13 @@ export default function Home() {
 		currentLayout === 'search' ? (
 			<>
 				<Search />
-				<Plan />
 			</>
 		) : (
 			<PlanFullScreen />
 		);
 
 	return (
-		<main className='flex flex-col items-center gap-4 h-screen max-w-[460px] mx-auto p-4 bg-green-200'>
+		<main className='flex flex-col items-center gap-4 h-screen max-w-[460px] mx-auto p-4 bg-white'>
 			<LayoutButtons />
 			{chosenLayout}
 			<Results />

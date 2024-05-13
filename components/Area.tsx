@@ -22,7 +22,7 @@ export default function Area({ item }: Props) {
 	return (
 		<div
 			className={`mb-2 p-2 border-solid border-[1px] border-gray-400 rounded ${
-				checkedArea === item.id && 'bg-gray-300'
+				checkedArea === item.id && 'border-blue-600 border-2'
 			}`}
 			onClick={handleClick}
 			onDoubleClick={handleDoubleClick}>

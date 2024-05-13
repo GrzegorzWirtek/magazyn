@@ -27,18 +27,18 @@ export default function LayoutButtons() {
 	};
 
 	return (
-		<div className='w-full flex justify-around'>
+		<div className='w-full flex justify-between pb-8'>
 			<button
-				className={`w-[45%] bg-blue-300 text-white font-bold py-2 px-4 rounded ${
-					currentLayout === 'search' && 'bg-blue-700'
+				className={`w-[49%] font-bold text-gray-400 py-2 px-4 border-2 border-gray-300 rounded ${
+					currentLayout === 'search' && 'border-blue-600 text-gray-600'
 				}`}
 				onClick={() => handleLayoutChange('search')}>
 				SZUKANIE
 			</button>
 
 			<button
-				className={`w-[45%] bg-blue-300 text-white font-bold py-2 px-4 rounded ${
-					currentLayout === 'edit' && 'bg-blue-700'
+				className={`w-[49%] font-bold text-gray-400 py-2 px-4 border-2 border-gray-300 rounded ${
+					currentLayout === 'edit' && 'border-blue-600 text-gray-600'
 				}`}
 				onClick={() => handleLayoutChange('edit')}>
 				EDYCJA

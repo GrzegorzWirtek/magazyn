@@ -25,7 +25,6 @@ export default function Search() {
 
 		inputRef.current?.blur();
 		const idsFound = findElements(value);
-		console.log('ids', idsFound);
 		setChecked(idsFound);
 		setSearchValue(value);
 		setCheckedArea(null);
@@ -57,7 +56,7 @@ export default function Search() {
 					<input
 						type='search'
 						id='search-dropdown'
-						className='block p-2 w-full z-20 text-lg text-gray-900 bg-gray-50 rounded-lg border border-gray-300 outline-none focus:border-blue-700'
+						className='block p-2 w-full z-20 text-lg text-gray-900 bg-gray-50 rounded border border-gray-300 outline-none focus:border-blue-700'
 						placeholder='Szukaj'
 						required
 						value={value}
