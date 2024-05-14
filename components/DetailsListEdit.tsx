@@ -91,38 +91,38 @@ export default function DetailsListEdit() {
 					className='basis-[48%] bg-red-700 hover:bg-red-600 text-white font-bold py-2 rounded'>
 					ZATWIERDŹ ZMIANY
 				</button>
-				<table className='w-full mt-4  table-auto'>
+				<table className='w-full mt-4 table-auto'>
 					<tbody>
 						{products.map((product, index) => (
-							<tr key={index} className=''>
-								<td className='border py-1 px-2 w-[60%]'>
+							<tr key={index} className='bg-white'>
+								<td className='border border-gray-400 py-1 px-2 w-[60%]'>
 									<input
 										type='text'
 										value={product.name}
-										className='w-full outline-none'
+										className='w-full outline-none bg-transparent'
 										onChange={(e) => handleChange(e, index, 'name')}
 										onFocus={handleFocus}
 									/>
 								</td>
-								<td className='border py-1 px-2 w-[15%]'>
+								<td className='border border-gray-400 py-1 px-2 w-[15%]'>
 									<input
 										type='number'
 										value={product.amount}
-										className='w-full outline-none'
+										className='w-full outline-none bg-transparent'
 										onChange={(e) => handleChange(e, index, 'amount')}
 										onFocus={handleFocus}
 									/>
 								</td>
-								<td className='border py-1 px-2 w-[15%] font-semibold text-red-900'>
+								<td className='border border-gray-400 py-1 px-2 w-[15%] font-semibold text-red-900'>
 									<input
 										type='number'
 										value={product.level}
-										className='w-full outline-none font-semibold text-red-900'
+										className='w-full outline-none font-semibold text-red-900 bg-transparent'
 										onChange={(e) => handleChange(e, index, 'level')}
 										onFocus={handleFocus}
 									/>
 								</td>
-								<td className='border w-[10%] font-semibold bg-red-700 hover:bg-red-600'>
+								<td className='border border-gray-400 w-[10%] font-semibold bg-red-700 hover:bg-red-600'>
 									<button
 										type='button'
 										className='font-bold w-full h-[100%] px-2 text-white '
