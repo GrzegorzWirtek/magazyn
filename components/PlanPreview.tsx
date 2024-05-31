@@ -7,7 +7,7 @@ export default function PlanPreview({
 }) {
 	return (
 		<div className='flex justify-center basis-1/2'>
-			<div className='h-[160px] aspect-[2/3] grid grid-cols-4 grid-rows-4 box-border rounded'>
+			<div className='h-[160px] aspect-[2/3] grid grid-cols-5 grid-rows-8 box-border rounded'>
 				{tempdb.map((area) => (
 					<div
 						key={area.id}

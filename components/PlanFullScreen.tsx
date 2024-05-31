@@ -19,7 +19,7 @@ export default function PlanFullScreen() {
 
 	return (
 		<div className='w-full'>
-			<div className='w-full aspect-[2/3] grid grid-cols-4 grid-rows-4 box-border rounded'>
+			<div className='w-full aspect-[2/3] grid grid-cols-5 grid-rows-8 box-border rounded'>
 				{tempdb.map((area) => (
 					<div
 						key={area.id}
