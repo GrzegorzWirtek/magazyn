@@ -30,7 +30,7 @@ export default function LayoutButtons() {
 		<div className='w-full flex justify-between pb-8'>
 			<button
 				className={`w-[49%] font-bold text-gray-400 py-2 px-4 border-2 border-gray-300 rounded ${
-					currentLayout === 'search' && 'border-blue-600 text-gray-600'
+					currentLayout === 'search' && 'border-gray-600 text-gray-600'
 				}`}
 				onClick={() => handleLayoutChange('search')}>
 				SZUKANIE
@@ -38,7 +38,7 @@ export default function LayoutButtons() {
 
 			<button
 				className={`w-[49%] font-bold text-gray-400 py-2 px-4 border-2 border-gray-300 rounded ${
-					currentLayout === 'edit' && 'border-blue-600 text-gray-600'
+					currentLayout === 'edit' && 'border-gray-600 text-gray-600'
 				}`}
 				onClick={() => handleLayoutChange('edit')}>
 				EDYCJA
